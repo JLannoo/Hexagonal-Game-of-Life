@@ -1,0 +1,23 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+
+      - name: Run build
+        run: npm run build
+
+      - name: Overwrite GitHub Pages
+        uses: rayluo/github-pages-overwriter@v1.3
+
+        with:
+          source-directory: ./dist
+          target-branch: gh_pages
