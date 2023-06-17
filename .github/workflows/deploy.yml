@@ -27,5 +27,5 @@ jobs:
         uses: rayluo/github-pages-overwriter@v1.3
 
         with:
-          source-directory: ./dist
+          source-directory: dist
           target-branch: gh_pages
