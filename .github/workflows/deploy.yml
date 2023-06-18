@@ -12,20 +12,14 @@ jobs:
       - name: Check out
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: '18.x'
-
       - name: Install dependencies
         run: npm install        
 
       - name: Run build
         run: npm run build
 
-      - name: Overwrite GitHub Pages
-        uses: rayluo/github-pages-overwriter@v1.3
-
+      - name: Deploy to gh-pages branch
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          source-directory: dist/
-          target-branch: gh_pages
+          branch: gh-pages
+          folder: dist
