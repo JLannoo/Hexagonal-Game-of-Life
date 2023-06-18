@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    
+
+    
+    
+    
+    
+    <title>Hexagonal Game of Life</title>
+    <script type="module" crossorigin src="/assets/index-09c2fba2.js"></script>
+    <link rel="stylesheet" href="/assets/index-cd2ace9d.css">
+  </head>
+  <body>
+    <div id="sketch"></div>
+
+    <div id="controls">
+      <button id="PlayPause">Play</button>
+      <button id="Step">Step</button>
+      <button id="Clear">Clear</button>
+    </div>
+    <p id="Options">Options</p>
+
+    <dialog>
+      <h2>Options</h2>
+    
+      <form method="dialog">
+        <fieldset>
+          <legend>Game</legend>
+
+          <input-group>
+            <label for="speed">Speed</label>
+            <input type="range" id="speed" name="speed" min="20" max="5000" value="50">
+            <span id="speed-value"></span>
+          </input-group>
+  
+          <input-group>
+            <label for="grid">Grid Quantity</label>
+            <input type="number" id="grid" name="grid" min="1" max="100" value="10">
+          </input-group>
+        </fieldset>
+
+        <fieldset>
+          <legend>Rules</legend>
+
+          <input-group title="The number of neighbors required for a cell to be born. (comma separated)">
+            <label for="birth">Birth (?) </label>
+            <input type="text" id="birth" name="birth" value="3">
+          </input-group>
+
+          <input-group title="The number of neighbors required for a cell to survive. (comma separated)">
+            <label for="survive">Survival (?)</label>
+            <input type="text" id="survive" name="survive" value="2,3">
+          </input-group>
+        </fieldset>
+
+        <fieldset>
+          <legend>Debug</legend>
+
+          <input-group>
+            <label for="debug-coordinates">Show coordinates</label>
+            <input type="checkbox" id="debug-coordinates" name="debug-coordinates">
+          </input-group>
+        </fieldset>
+      </form>
+      
+      <button id="dialog-close" type="submit" formmethod="dialog">Close</button>
+    </dialog>
+  </body>
+</html>
