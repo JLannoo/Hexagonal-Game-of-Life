@@ -18,7 +18,7 @@ export class HexCell {
 
 	public draw() {
 		stroke(COLORS.STROKE);
-		strokeWeight(2);
+		strokeWeight(GRID.N >= 40 ? 1 : 2);
 		fill(this.isAlive ? COLORS.ALIVE : COLORS.DEAD);
 	
 		const { x, y } = this.gridToPixel(this.x, this.y);
@@ -64,24 +64,20 @@ export class HexCell {
 	public getNeighbours(board: HexCell[][]): HexCell[] {
 		const neighbours: HexCell[] = [];
 
-		for(const cell of board.flat()){
-			if(cell === this) continue;
+		neighbours.push(board[this.x - 1]?.[this.y]);
+		neighbours.push(board[this.x + 1]?.[this.y]);
+		neighbours.push(board[this.x]?.[this.y - 1]);
+		neighbours.push(board[this.x]?.[this.y + 1]);
 
-			const xDiff = abs(cell.x - this.x);
-			const yDiff = abs(cell.y - this.y);
-
-			if(xDiff > 1 || yDiff > 1) continue;
-			
-			if(this.offset){
-				if((xDiff === 1 && this.x > cell.x) && yDiff === 1) continue;
-			} else {
-				if((xDiff === 1 && this.x < cell.x) && yDiff === 1) continue;
-			}
-
-			neighbours.push(cell);
+		if(this.offset === 0){
+			neighbours.push(board[this.x - 1]?.[this.y - 1]);
+			neighbours.push(board[this.x - 1]?.[this.y + 1]);
+		} else {
+			neighbours.push(board[this.x + 1]?.[this.y - 1]);
+			neighbours.push(board[this.x + 1]?.[this.y + 1]);
 		}
 
-		return neighbours;
+		return neighbours.filter(cell => cell !== undefined);
 	}
 
 	public getNeighboursAlive(board: HexCell[][]): number {
